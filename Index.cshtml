@@ -1,0 +1,44 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@model List<Product>
+<a asp-controller="Product" asp-action="AddProduct"  class="btn btn-sm btn-primary">Add Product</a>
+<form method="get" asp-controller="Product" asp-action="IndexSearch">
+    <span>
+        <input type="text" name="str" />
+        <button type="submit" class="btn btn-primary">Search</button>
+    </span>
+</form>
+
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Name</th>
+            <th scope="col">Category</th>
+            <th scope="col">Price</th>
+            <th scope="col">Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var d in Model)
+        {
+            <tr>
+                <th scope="row">@d.Id</th>
+                <td>@d.Name</td>
+                <td>@d.Category</td>
+                <td>@d.Price</td>
+                <td>
+                    <a asp-controller="Product" asp-action="Delete" asp-route-id="@d.Id" class="btn btn-danger btn-sm" >Delete</a>
+                <a asp-controller="Product" asp-action="FetchUpdate" asp-route-id="@d.Id" class="btn btn-warning btn-sm">Edit</a>
+                </td>
+            </tr>
+        }
+      
+       
+    </tbody>
+</table>
